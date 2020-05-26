@@ -1,0 +1,19 @@
+{
+  "name": "nano-bot",
+  "version": "1.0.0",
+  "description": "Bot used to hook into a Nano RPC endpoint and distribute funds to Discord users",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Linuxserver.io",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "bignumber.js": "^9.0.0",
+    "discord.js": "^12.2.0",
+    "level": "^6.0.1",
+    "log-timestamp": "^0.3.0",
+    "nanocurrency": "^2.4.0",
+    "node-fetch": "^2.6.0"
+  }
+}

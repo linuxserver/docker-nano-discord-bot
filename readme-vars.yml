@@ -1,0 +1,40 @@
+---
+
+# project information
+project_name: nano-discord-bot
+project_url: "https://discord.com/developers/docs/intro"
+project_logo: "https://discord.com/assets/fc0b01fe10a0b8c602fb0106d8189d9b.png"
+project_blurb: |
+  [{{ project_name|capitalize }}]({{ project_url }}) - A bot used to hook into a [self hosted Nano RPC endpoint](https://hub.docker.com/r/linuxserver/nano) and discord server to Distribute funds from a faucet account.
+project_lsio_github_repo_url: "https://github.com/linuxserver/docker-{{ project_name }}"
+
+# supported architectures
+available_architectures:
+  - { arch: "{{ arch_x86_64 }}", tag: "amd64-latest"}
+  - { arch: "{{ arch_arm64 }}", tag: "arm64v8-latest"}
+  - { arch: "{{ arch_armhf }}", tag: "arm32v7-latest"}
+
+# container parameters
+param_container_name: "{{ project_name }}"
+param_usage_include_vols: true
+param_volumes:
+  - { vol_path: "/config", vol_host_path: "/path/to/data", desc: "Database and Radarr configs" }
+
+param_usage_include_ports: false
+param_usage_include_env: true
+param_env_vars:
+  - { env_var: "WALLET_URL", env_value: "https://wallet.linuxserver.io/#/nano.linuxserver.io/", desc: "Hosted wallet endpoint to use."}
+  - { env_var: "RPC_URL", env_value: "https://nano.linuxserver.io:7077", desc: "RPC endpoint to publish blocks to and ingest account information."}
+  - { env_var: "FAUCET_KEY", env_value: "XXXXXXXXXXXXX", desc: "The private key for your faucet account."}
+  - { env_var: "DISCORD_KEY", env_value: "XXXXXXXXXXXXX", desc: "Discord api key for the bot."}
+  - { env_var: "FAUCET_AMOUNT", env_value: "\"1000\"", desc: "Amount to distribute to individual Discord users in Nano."}
+
+# application setup block
+app_setup_block_enabled: true
+app_setup_block: |
+  With the proper environment variables passed to this container it will automatically reach out to your Nano RPC server and Discord Server.
+  More about setting up a hosted Nano network [here](https://hub.docker.com/r/linuxserver/nano) .
+
+# changelog
+changelogs:
+  - { date: "25.05.20:", desc: "Initial Release." }

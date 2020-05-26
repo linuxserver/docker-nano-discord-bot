@@ -1,0 +1,19 @@
+---
+
+# jenkins variables
+project_name: docker-nano-discord-bot
+external_type: os
+release_type: stable
+release_tag: latest
+ls_branch: master
+repo_vars:
+  - BUILD_VERSION_ARG = 'BOT_VERSION'
+  - LS_USER = 'linuxserver'
+  - LS_REPO = 'docker-nano-discord-bot'
+  - CONTAINER_NAME = 'nano-discord-bot'
+  - DOCKERHUB_IMAGE = 'lsiodev/nano-discord-bot'
+  - DEV_DOCKERHUB_IMAGE = 'lsiodev/nano-discord-bot-dev'
+  - PR_DOCKERHUB_IMAGE = 'lspipepr/nano-discord-bot'
+  - DIST_IMAGE = 'alpine'
+  - MULTIARCH='true'
+  - CI='false'
