@@ -62,7 +62,7 @@ client.on('message', msg => {
     const userid = msg.author.id;
     userdb.get(userid, function (err, destination) {
       if (err){
-        msg.reply(userid + ' has not registered a nano address please use !register-address');
+        msg.reply(userid + ' has not registered a nano address please use go to ' + walleturl + ' and click Generate Wallet then use !register-address with your address');
       }
       else{
         faucetdb.get(userid, async function (err, block) {
@@ -131,18 +131,23 @@ async function updatework() {
     info['representative'] = 'true'
     info['account'] = sender
     const res = await rpcall(info);
-    const balanceBN = new BigNumber(res.balance).minus(new BigNumber(amount));
-    balance = balanceBN.toFixed();
-    if (balanceBN.isNegative()){
-      readytosend = false;
-      hasfunds = false;
+    if (res.frontier){
+      const balanceBN = new BigNumber(res.balance).minus(new BigNumber(amount));
+      balance = balanceBN.toFixed();
+      if (balanceBN.isNegative()){
+        readytosend = false;
+        hasfunds = false;
+      }
+      else{
+        hasfunds = true;
+        frontier = res.frontier;
+        representative = res.representative;
+        console.log('need to calculate pow for ' + sender + ' frontier block');
+        worker.postMessage(frontier);
+      }
     }
     else{
-      hasfunds = true;
-      frontier = res.frontier;
-      representative = res.representative;
-      console.log('need to calculate pow for ' + sender + ' frontier block');
-      worker.postMessage(frontier);
+      readytosend = false;
     }
   }
 }
