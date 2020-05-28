@@ -2,6 +2,7 @@
 
 # project information
 project_name: nano-discord-bot
+lsio_project_name_short: lsiodev
 project_url: "https://discord.com/developers/docs/intro"
 project_logo: "https://discord.com/assets/fc0b01fe10a0b8c602fb0106d8189d9b.png"
 project_blurb: |
