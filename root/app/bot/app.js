@@ -62,7 +62,7 @@ client.on('message', msg => {
     const userid = msg.author.id;
     userdb.get(userid, function (err, destination) {
       if (err){
-        msg.reply(userid + ' has not registered a nano address please use go to ' + walleturl + ' and click Generate Wallet then use !register-address with your address');
+        msg.reply(userid + ' has not registered a nano address please go to ' + walleturl + ' and click Generate Wallet then use !register-address with your address');
       }
       else{
         faucetdb.get(userid, async function (err, block) {
